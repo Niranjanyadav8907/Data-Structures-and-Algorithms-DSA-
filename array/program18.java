@@ -1,0 +1,45 @@
+// WAJP to rotate all the elements of array k position to its left.   array[] = {1, 2, 3, 4, 5, 6, 7}, k = 2  Output: {3 4 5 6 7 1 2}
+
+package array;
+
+public class program18 {
+
+    // Method to rotate the array by k positions to the left
+    public static void rotateLeftByK(int[] arr, int k) {
+        int n = arr.length;
+        k = k % n;  // In case k is greater than the array length
+
+        // Create a temporary array to store the rotated result
+        int[] temp = new int[n];
+
+        // Copy elements starting from k to the end of the array to the start of the temp array
+        for (int i = 0; i < n - k; i++) {
+            temp[i] = arr[i + k];
+        }
+
+        // Copy the first k elements of the original array to the end of the temp array
+        for (int i = n - k; i < n; i++) {
+            temp[i] = arr[i - (n - k)];
+        }
+
+        // Copy the rotated elements back to the original array
+        for (int i = 0; i < n; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
+    public static void main(String[] args) {
+        // Example array and rotation value k
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};  // You can modify this array as needed
+        int k = 2;  // Number of positions to rotate
+
+        // Rotate the array by k positions to the left
+        rotateLeftByK(arr, k);
+
+        // Print the rotated array
+        System.out.println("Array after rotating " + k + " positions to the left:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
